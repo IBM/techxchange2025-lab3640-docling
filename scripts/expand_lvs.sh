@@ -31,11 +31,11 @@ lvextend -L +120G "/dev/$VG_NAME/lv_var" -r
 
 # Calculate remaining space (~260G) and divide by 4
 REMAINING_EXTENTS=$(vgs --noheadings --units g -o vg_free "$VG_NAME" | awk '{print int($1)}')
-EACH_EXTENT=$((REMAINING_EXTENTS / 4))
+EACH_EXTENT=$((REMAINING_EXTENTS / 5))
 
 echo "Allocating ~${EACH_EXTENT}G to each of the remaining LVs..."
 
-for lv in lv_log lv_opt lv_audit lv_tmp; do
+for lv in lv_log lv_opt lv_audit lv_tmp lv_root; do
   lv_path="/dev/$VG_NAME/$lv"
   echo "Extending $lv_path by ${EACH_EXTENT}G..."
   lvextend -L +"${EACH_EXTENT}G" "$lv_path" -r
