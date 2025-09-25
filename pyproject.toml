@@ -1,0 +1,16 @@
+[project]
+name = "techxchange2025-lab3640-docling"
+version = "0.1.0"
+description = "Docling lab at IBM TechXchange 2025"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "docling>=2.54.0",
+    "httpx>=0.28.1",
+    "ipykernel>=6.30.1,<7.0.0",
+    "matplotlib>=3.10.6",
+    "notebook>=7.4.5,<8.0.0",
+    "pandas>=2.3.2",
+    "pillow>=11.3.0",
+    "python-dotenv>=1.1.1",
+]

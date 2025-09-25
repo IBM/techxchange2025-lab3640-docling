@@ -44,11 +44,11 @@ else
 fi
 
 # --- Run lab_init.sh ---
-SCRIPT="./setup/lab_init.sh"
-if [ -f "$SCRIPT" ]; then
-    echo "Running $(basename "$SCRIPT")..."
-    bash "$SCRIPT"
-else
-    echo "Script $(basename "$SCRIPT") not found."
-    exit 1
-fi
+# SCRIPT="./setup/lab_init.sh"
+# if [ -f "$SCRIPT" ]; then
+#     echo "Running $(basename "$SCRIPT")..."
+#     bash "$SCRIPT"
+# else
+#     echo "Script $(basename "$SCRIPT") not found."
+#     exit 1
+# fi

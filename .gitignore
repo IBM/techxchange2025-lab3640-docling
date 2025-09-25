@@ -1,3 +1,6 @@
+env.secrets
+output/
+
 # Created by https://www.toptal.com/developers/gitignore/api/python,macos,emacs,vim,visualstudiocode,virtualenv,jupyternotebooks
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,macos,emacs,vim,visualstudiocode,virtualenv,jupyternotebooks
 
