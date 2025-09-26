@@ -46,7 +46,7 @@ if podman ps --filter "name=$CONTAINER_NAME" --format "{{.Names}}" | grep -wq "$
 else
     echo "Container '$CONTAINER_NAME' is not running. Launching..."
 
-    podman run --name="$CONTAINER_NAME" \
+    podman run --name="$CONTAINER_NAME" -d \
         -v "$SETUP_DIR/litellm_config.yaml":/app/config.yaml \
         --rm \
         -p 4000:4000 \
@@ -65,7 +65,9 @@ if podman ps --filter "name=$CONTAINER_NAME" --format "{{.Names}}" | grep -wq "$
 else
     echo "Container '$CONTAINER_NAME' is not running. Launching..."
 
-    podman run --name="$CONTAINER_NAME" \
+    mkdir -p ~/.llama
+
+    podman run --name="$CONTAINER_NAME" -d \
         --rm \
         -p $LLAMA_STACK_PORT:$LLAMA_STACK_PORT \
         -v ~/.llama:/root/.llama \
