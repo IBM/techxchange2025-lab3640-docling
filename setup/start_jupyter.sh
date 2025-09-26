@@ -13,7 +13,7 @@ PORT=8888
 # Function to get Jupyter URL
 # ----------------------------
 get_jupyter_url() {
-    TOKEN=$(uvx jupyter notebook list | grep ":$PORT" | awk -F '::' '{print $1}' | sed 's/.*token=//')
+    TOKEN=$(uv run jupyter notebook list | grep ":$PORT" | awk -F '::' '{print $1}' | sed 's/.*token=//')
     if [ -n "$TOKEN" ]; then
         echo "http://localhost:$PORT/?token=$TOKEN"
     else
@@ -31,8 +31,8 @@ if [ -f "$PIDFILE" ] && kill -0 $(cat "$PIDFILE") 2>/dev/null; then
 else
     echo "Starting Jupyter Notebook in UV environment..."
 
-    # Launch Jupyter in background via uvx
-    nohup uvx jupyter-notebook --no-browser --port=$PORT --notebook-dir="$NOTEBOOK_DIR" > "$HOME/jupyter.log" 2>&1 &
+    # Launch Jupyter in background via uv run
+    nohup uv run jupyter-notebook --no-browser --port=$PORT --notebook-dir="$NOTEBOOK_DIR" > "$HOME/jupyter.log" 2>&1 &
 
     # Save PID
     echo $! > "$PIDFILE"
