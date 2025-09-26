@@ -11,8 +11,8 @@ if ! lsblk "$DEVICE" &>/dev/null; then
 fi
 
 # exit gracefully if the device is already mounted
-if mount | grep -q "^$DEVICE "; then
-  echo "Device $DEVICE is already mounted. Nothing to do."
+if pvs --noheadings -o vg_name "$DEVICE" 2>/dev/null | grep -q "$VG_NAME"; then
+  echo "Device $DEVICE is already part of $VG_NAME. Nothing to do."
   exit 0
 fi
 
