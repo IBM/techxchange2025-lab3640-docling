@@ -10,6 +10,12 @@ if ! lsblk "$DEVICE" &>/dev/null; then
   exit 1
 fi
 
+# exit gracefully if the device is already mounted
+if mount | grep -q "^$DEVICE "; then
+  echo "Device $DEVICE is already mounted. Nothing to do."
+  exit 0
+fi
+
 if pvs "$DEVICE" &>/dev/null; then
   echo "$DEVICE is already a physical volume. Skipping pvcreate."
 else
