@@ -8,6 +8,8 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 NOTEBOOK_DIR="${REPO_DIR}/notebooks"
 PORT=8888
+MAX_TRIES=10   # number of times to retry
+SLEEP_TIME=2   # seconds between retries
 
 # ----------------------------
 # Function to get Jupyter URL
@@ -15,6 +17,23 @@ PORT=8888
 get_jupyter_url() {
     URL=$(uv run jupyter lab list | grep ":$PORT" | awk -F '::' '{print $1}')
     echo $URL
+}
+
+# ----------------------------
+# Wait until Jupyter URL is ready
+# ----------------------------
+wait_for_url() {
+    local count=0
+    while [ $count -lt $MAX_TRIES ]; do
+        URL=$(get_jupyter_url)
+        if [ -n "$URL" ]; then
+            echo "$URL"
+            return 0
+        fi
+        sleep $SLEEP_TIME
+        count=$((count+1))
+    done
+    return 1
 }
 
 # ----------------------------
@@ -34,8 +53,12 @@ else
     echo $! > "$PIDFILE"
     echo "Jupyter Notebook started (PID $!)."
 
-    # Give Jupyter a moment to generate token
-    sleep 2
-    URL=$(get_jupyter_url)
-    echo "Access it at: $URL"
+    echo "Waiting for Jupyter to be ready..."
+    URL=$(wait_for_url)
+    if [ $? -eq 0 ]; then
+        echo "Access it at: $URL"
+    else
+        echo "Jupyter did not become ready after $MAX_TRIES attempts (~$((MAX_TRIES * SLEEP_TIME)) seconds)."
+        echo "Check $HOME/jupyter.log for details."
+    fi
 fi
