@@ -33,6 +33,16 @@ else
     exit 1
 fi
 
+# --- Run enable_port_forwarding.sh ---
+SCRIPT="./setup/enable_port_forwarding.sh"
+if [ -f "$SCRIPT" ]; then
+    echo "Running $(basename "$SCRIPT")..."
+    sudo bash "$SCRIPT"
+else
+    echo "Script $(basename "$SCRIPT") not found."
+    exit 1
+fi
+
 # --- Run install_deps.sh ---
 SCRIPT="./setup/install_deps.sh"
 if [ -f "$SCRIPT" ]; then

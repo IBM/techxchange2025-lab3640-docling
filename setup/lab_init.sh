@@ -71,10 +71,10 @@ else
         --rm \
         -p $LLAMA_STACK_PORT:$LLAMA_STACK_PORT \
         -v ~/.llama:/root/.llama \
-        llamastack/distribution-starter:0.2.22 \
+        llamastack/distribution-starter:0.2.23 \
         --port $LLAMA_STACK_PORT \
         --env MILVUS_URL=http://localhost:19530 \
-        --env VLLM_URL=http://host.containers.internal:1234/v1
+        --env VLLM_URL=http://host.containers.internal:4000
 fi
 
 
