@@ -24,11 +24,11 @@ if [ ! -f "$SECRETS_FILE" ]; then
 
     # Prompt user for API key and Project ID
     read -p "Enter your WATSONX_APIKEY: " WATSONX_APIKEY
-    read -p "Enter your WATSONX_PROJECT_ID: " WATSONX_PROJECT_ID
+    # read -p "Enter your WATSONX_PROJECT_ID: " WATSONX_PROJECT_ID
 
     # Replace placeholder values in env.secrets
     sed -i "s|WATSONX_APIKEY=fillme|WATSONX_APIKEY=$WATSONX_APIKEY|" "$SECRETS_FILE"
-    sed -i "s|WATSONX_PROJECT_ID=fillme|WATSONX_PROJECT_ID=$WATSONX_PROJECT_ID|" "$SECRETS_FILE"
+    # sed -i "s|WATSONX_PROJECT_ID=fillme|WATSONX_PROJECT_ID=$WATSONX_PROJECT_ID|" "$SECRETS_FILE"
 
     echo "Updated $SECRETS_FILE with your credentials."
 else
