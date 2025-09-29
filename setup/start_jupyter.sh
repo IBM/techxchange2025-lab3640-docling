@@ -13,7 +13,7 @@ PORT=8888
 # Function to get Jupyter URL
 # ----------------------------
 get_jupyter_url() {
-    URL=$(uv run jupyter notebook list | grep ":$PORT" | awk -F '::' '{print $1}')
+    URL=$(uv run jupyter lab list | grep ":$PORT" | awk -F '::' '{print $1}')
     echo $URL
 }
 
