@@ -47,7 +47,7 @@ else
     echo "Starting Jupyter Notebook in UV environment..."
 
     # Launch Jupyter in background via uv run
-    nohup uv run jupyter lab --no-browser --port=$PORT --notebook-dir="$NOTEBOOK_DIR" --ServerApp.token='' > "$HOME/jupyter.log" 2>&1 &
+    nohup uv run jupyter lab --no-browser --host="0.0.0.0" --port=$PORT --notebook-dir="$NOTEBOOK_DIR" --ServerApp.token='' > "$HOME/jupyter.log" 2>&1 &
 
     # Save PID
     echo $! > "$PIDFILE"
