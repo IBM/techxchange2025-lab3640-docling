@@ -3,16 +3,19 @@ name = "techxchange2025-lab3640-docling"
 version = "0.1.0"
 description = "Docling lab at IBM TechXchange 2025"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12,<3.14"
 dependencies = [
     "docling>=2.54.0",
+    "docling-mcp>=1.3.2",
     "httpx>=0.28.1",
     "jupyterlab>=4.4.7",
     "langchain-community>=0.3.30",
     "langchain-huggingface>=0.3.1",
     "langchain-milvus>=0.2.1",
     "langchain-openai>=0.3.33",
+    "llama-stack-client==0.2.23",
     "matplotlib>=3.10.6",
+    "openai-agents>=0.3.2",
     "pandas>=2.3.2",
     "pillow>=11.3.0",
     "pymilvus[milvus-lite]>=2.6.2",

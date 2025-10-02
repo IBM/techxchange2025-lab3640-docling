@@ -77,6 +77,8 @@ else
         --env VLLM_URL=http://host.containers.internal:4000
 fi
 
+# Launch the Docling MCP
+bash "$SETUP_DIR/start_docling_mcp.sh"
 
 # Launch the Jupyter notebooks
 bash "$SETUP_DIR/start_jupyter.sh"
