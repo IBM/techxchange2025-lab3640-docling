@@ -2,6 +2,9 @@ model_list:
   - model_name: "granite-3-3-8b-instruct"
     litellm_params:
       model: "watsonx/ibm/granite-3-3-8b-instruct"
+  - model_name: "granite-4-h-small"
+    litellm_params:
+      model: "watsonx/ibm/granite-4-h-small"
   - model_name: "granite-vision-3.2-2b"
     litellm_params:
       model: "watsonx/ibm/granite-vision-3-2-2b"
